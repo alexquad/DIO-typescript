@@ -1,14 +1,35 @@
 "use strict";
-let btn = document.getElementById('btn');
-let input1 = document.getElementById('input1');
-let input2 = document.getElementById('input2');
-function adicionarNumeros(num1, num2) {
-    return num1 + num2;
+// O código abaixo tem alguns erros e não funciona como deveria. Você pode identificar quais são e corrigi-los em um arquivo TS?
+let botaoAtualizar = document.getElementById('atualizar-saldo');
+let botaoLimpar = document.getElementById('limpar-saldo');
+let soma = document.getElementById('soma');
+let campoSaldo = document.getElementById('campo-saldo');
+campoSaldo.innerHTML = '0';
+let totalValue = 0;
+function somarAoSaldo(soma) {
+    if (campoSaldo) {
+        totalValue += soma;
+        campoSaldo.innerHTML = totalValue.toString();
+    }
 }
-if (btn) {
-    btn.addEventListener('click', () => {
-        if (input1 && input2) {
-            console.log(adicionarNumeros(Number(input1.value), Number(input2.value)));
-        }
+function limparSaldo() {
+    campoSaldo.innerHTML = '';
+    totalValue = 0;
+}
+if (botaoAtualizar) {
+    botaoAtualizar.addEventListener('click', function () {
+        console.log("Pressed");
+        somarAoSaldo(Number(soma.value));
     });
 }
+if (botaoLimpar) {
+    botaoLimpar.addEventListener('click', function () {
+        limparSaldo();
+    });
+}
+/**
+    <h4>Valor a ser adicionado: <input id="soma"> </h4>
+    <button id="atualizar-saldo">Atualizar saldo</button>
+    <button id="limpar-saldo">Limpar seu saldo</button>
+    <h1>"Seu saldo é: " <span id="campo-saldo"></span></h1>
+ */ 
